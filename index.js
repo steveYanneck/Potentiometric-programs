@@ -1,13 +1,11 @@
-const volumes = [1, 5, 12.5, 15, 20, 25, 26, 30]
-//formule E = k - (0.0592/n)*pH
-// k = E + 0,0592/n*log
+const extinction = 0.388
 
-const energy = 1.52
-const n = 1
-const concentration = 0.002
-const k = energy + (0.0592/n) * Math.log(concentration)
+const calibration = 0.0349 //absorptie bij 1ppm
 
-for(volume of volumes) {
-    const potential = k + (0.0592/5) * Math.log(1)
-    console.log(`Volume: ${volume}, Potential: ${potential}`)
-}
+//extinction = K*l*c (lambert beer)
+
+const K = (0.01 * 0.001) / calibration
+
+const sampleConcentration = (K * 0.01) / extinction
+
+console.log(`De concentratie is ${sampleConcentration * 1000}`)
